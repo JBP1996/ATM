@@ -27,132 +27,264 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Principal = new javax.swing.JPanel();
-        gestaoContas = new javax.swing.JLabel();
-        inserir = new javax.swing.JPanel();
-        inserirPessoa = new javax.swing.JButton();
-        inserirConta = new javax.swing.JButton();
-        listar = new javax.swing.JPanel();
-        listarPessoas = new javax.swing.JButton();
-        ListarContas = new javax.swing.JButton();
-        ListarTudo = new javax.swing.JButton();
-        entrar = new javax.swing.JPanel();
-        entrarConta = new javax.swing.JButton();
+        opcaoInserir = new javax.swing.ButtonGroup();
+        Inserir = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        InserirPessoa = new javax.swing.JRadioButton();
+        InserirConta = new javax.swing.JRadioButton();
+        InserirPessoaConta = new javax.swing.JRadioButton();
+        Pessoa = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        nomeP = new javax.swing.JTextField();
+        InserirP = new javax.swing.JButton();
+        Conta = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        nomeC = new javax.swing.JTextField();
+        InserirC = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        saldoC = new javax.swing.JTextField();
+        PessoaConta = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        nomePC = new javax.swing.JTextField();
+        InserirPC = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        saldoPC = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(449, 277));
 
-        gestaoContas.setText("Gestão de Contas");
+        Pessoa.setVisible(false);
+        Pessoa.setEnabled(false);
+        Conta.setVisible(false);
+        Conta.setEnabled(false);
+        PessoaConta.setVisible(false);
+        PessoaConta.setEnabled(false);
 
-        inserirPessoa.setText("Inserir Pessoa");
-        inserirPessoa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inserirPessoaActionPerformed(evt);
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Inserir");
+
+        opcaoInserir.add(InserirPessoa);
+        InserirPessoa.setText("Inserir Pessoa");
+        InserirPessoa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                InserirPessoaMouseClicked(evt);
             }
         });
 
-        inserirConta.setText("Inserir Conta");
+        opcaoInserir.add(InserirConta);
+        InserirConta.setText("Inserir Conta");
+        InserirConta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        InserirConta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                InserirContaMouseClicked(evt);
+            }
+        });
 
-        javax.swing.GroupLayout inserirLayout = new javax.swing.GroupLayout(inserir);
-        inserir.setLayout(inserirLayout);
-        inserirLayout.setHorizontalGroup(
-            inserirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(inserirLayout.createSequentialGroup()
+        opcaoInserir.add(InserirPessoaConta);
+        InserirPessoaConta.setText("Inserir Pessoa e Conta");
+        InserirPessoaConta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                InserirPessoaContaMouseClicked(evt);
+            }
+        });
+
+        Pessoa.setPreferredSize(new java.awt.Dimension(409, 160));
+
+        jLabel2.setText("Pessoa");
+
+        jLabel3.setText("Nome:");
+
+        InserirP.setText("Inserir");
+
+        javax.swing.GroupLayout PessoaLayout = new javax.swing.GroupLayout(Pessoa);
+        Pessoa.setLayout(PessoaLayout);
+        PessoaLayout.setHorizontalGroup(
+            PessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PessoaLayout.createSequentialGroup()
+                .addGroup(PessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PessoaLayout.createSequentialGroup()
+                        .addGap(177, 177, 177)
+                        .addComponent(jLabel2))
+                    .addGroup(PessoaLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(nomeP, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(InserirP)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        PessoaLayout.setVerticalGroup(
+            PessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PessoaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(inserirPessoa)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(inserirConta)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        inserirLayout.setVerticalGroup(
-            inserirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(inserirLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(inserirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(inserirPessoa)
-                    .addComponent(inserirConta))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(PessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(nomeP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(InserirP))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
 
-        listarPessoas.setText("Listar Pessoas");
+        Conta.setMinimumSize(new java.awt.Dimension(100, 100));
 
-        ListarContas.setText("Listar Contas");
+        jLabel4.setText("Conta");
 
-        ListarTudo.setText("Listar Tudo");
+        jLabel5.setText("Nome:");
 
-        javax.swing.GroupLayout listarLayout = new javax.swing.GroupLayout(listar);
-        listar.setLayout(listarLayout);
-        listarLayout.setHorizontalGroup(
-            listarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(listarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(listarPessoas)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(ListarContas)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(ListarTudo)
-                .addContainerGap(49, Short.MAX_VALUE))
-        );
-        listarLayout.setVerticalGroup(
-            listarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(listarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(listarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(listarPessoas)
-                    .addComponent(ListarContas)
-                    .addComponent(ListarTudo))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        InserirC.setText("Inserir");
 
-        entrarConta.setText("Entrar Conta");
+        jLabel6.setText("Saldo:");
 
-        javax.swing.GroupLayout entrarLayout = new javax.swing.GroupLayout(entrar);
-        entrar.setLayout(entrarLayout);
-        entrarLayout.setHorizontalGroup(
-            entrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(entrarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(entrarConta)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        entrarLayout.setVerticalGroup(
-            entrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(entrarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(entrarConta)
-                .addContainerGap(66, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout PrincipalLayout = new javax.swing.GroupLayout(Principal);
-        Principal.setLayout(PrincipalLayout);
-        PrincipalLayout.setHorizontalGroup(
-            PrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PrincipalLayout.createSequentialGroup()
-                .addGroup(PrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PrincipalLayout.createSequentialGroup()
-                        .addGap(148, 148, 148)
-                        .addComponent(gestaoContas)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(inserir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(PrincipalLayout.createSequentialGroup()
+        javax.swing.GroupLayout ContaLayout = new javax.swing.GroupLayout(Conta);
+        Conta.setLayout(ContaLayout);
+        ContaLayout.setHorizontalGroup(
+            ContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ContaLayout.createSequentialGroup()
+                .addGroup(ContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ContaLayout.createSequentialGroup()
+                        .addGap(177, 177, 177)
+                        .addComponent(jLabel4))
+                    .addGroup(ContaLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(listar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(PrincipalLayout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(nomeC, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ContaLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(entrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(saldoC, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(InserirC)))
+                .addContainerGap(203, Short.MAX_VALUE))
+        );
+        ContaLayout.setVerticalGroup(
+            ContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ContaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4)
+                .addGap(18, 18, 18)
+                .addGroup(ContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(nomeC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(ContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(saldoC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(InserirC))
+                .addContainerGap(63, Short.MAX_VALUE))
+        );
+
+        PessoaConta.setMinimumSize(new java.awt.Dimension(100, 100));
+
+        jLabel7.setText("Pessoa e Conta");
+
+        jLabel8.setText("Nome:");
+
+        InserirPC.setText("Inserir");
+
+        jLabel9.setText("Saldo:");
+
+        javax.swing.GroupLayout PessoaContaLayout = new javax.swing.GroupLayout(PessoaConta);
+        PessoaConta.setLayout(PessoaContaLayout);
+        PessoaContaLayout.setHorizontalGroup(
+            PessoaContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PessoaContaLayout.createSequentialGroup()
+                .addGroup(PessoaContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PessoaContaLayout.createSequentialGroup()
+                        .addGap(177, 177, 177)
+                        .addComponent(jLabel7))
+                    .addGroup(PessoaContaLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(nomePC, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PessoaContaLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(saldoPC, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(InserirPC)))
+                .addContainerGap(203, Short.MAX_VALUE))
+        );
+        PessoaContaLayout.setVerticalGroup(
+            PessoaContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PessoaContaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel7)
+                .addGap(18, 18, 18)
+                .addGroup(PessoaContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(nomePC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(PessoaContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(saldoPC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(InserirPC))
+                .addContainerGap(63, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout InserirLayout = new javax.swing.GroupLayout(Inserir);
+        Inserir.setLayout(InserirLayout);
+        InserirLayout.setHorizontalGroup(
+            InserirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(InserirLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(InserirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(InserirLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(InserirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(InserirLayout.createSequentialGroup()
+                                .addComponent(InserirPessoa)
+                                .addGap(47, 47, 47)
+                                .addComponent(InserirConta))
+                            .addGroup(InserirLayout.createSequentialGroup()
+                                .addGap(168, 168, 168)
+                                .addComponent(jLabel1)))
+                        .addGap(45, 45, 45)
+                        .addComponent(InserirPessoaConta))
+                    .addComponent(Pessoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(InserirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(InserirLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(Conta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+            .addGroup(InserirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(InserirLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(PessoaConta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
-        PrincipalLayout.setVerticalGroup(
-            PrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PrincipalLayout.createSequentialGroup()
+        InserirLayout.setVerticalGroup(
+            InserirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(InserirLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(gestaoContas)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(inserir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(listar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(InserirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(InserirPessoa)
+                    .addComponent(InserirConta)
+                    .addComponent(InserirPessoaConta))
                 .addGap(18, 18, 18)
-                .addComponent(entrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addComponent(Pessoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(InserirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(InserirLayout.createSequentialGroup()
+                    .addGap(74, 74, 74)
+                    .addComponent(Conta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(21, 21, 21)))
+            .addGroup(InserirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(InserirLayout.createSequentialGroup()
+                    .addGap(84, 84, 84)
+                    .addComponent(PessoaConta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -161,24 +293,50 @@ public class Principal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Principal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Inserir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Principal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Inserir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void inserirPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inserirPessoaActionPerformed
+    private void InserirPessoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InserirPessoaMouseClicked
         // TODO add your handling code here:
+        Conta.setVisible(false);
+        Conta.setEnabled(false);
+        PessoaConta.setVisible(false);
+        PessoaConta.setEnabled(false);
+        Pessoa.setVisible(true);
+        Pessoa.setEnabled(true);
+    }//GEN-LAST:event_InserirPessoaMouseClicked
+
+    private void InserirContaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InserirContaMouseClicked
+        // TODO add your handling code here:
+        Pessoa.setVisible(false);
+        Pessoa.setEnabled(false);
+        PessoaConta.setVisible(false);
+        PessoaConta.setEnabled(false);
+        Conta.setVisible(true);
+        Conta.setEnabled(true);
+    }//GEN-LAST:event_InserirContaMouseClicked
+
+    private void InserirPessoaContaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InserirPessoaContaMouseClicked
+        // TODO add your handling code here:
+        Pessoa.setVisible(false);
+        Pessoa.setEnabled(false);
+        Conta.setVisible(false);
+        Conta.setEnabled(false);
+        PessoaConta.setVisible(true);
+        PessoaConta.setEnabled(true);
         
-    }//GEN-LAST:event_inserirPessoaActionPerformed
+    }//GEN-LAST:event_InserirPessoaContaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -216,16 +374,30 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ListarContas;
-    private javax.swing.JButton ListarTudo;
-    private javax.swing.JPanel Principal;
-    private javax.swing.JPanel entrar;
-    private javax.swing.JButton entrarConta;
-    private javax.swing.JLabel gestaoContas;
-    private javax.swing.JPanel inserir;
-    private javax.swing.JButton inserirConta;
-    private javax.swing.JButton inserirPessoa;
-    private javax.swing.JPanel listar;
-    private javax.swing.JButton listarPessoas;
+    private javax.swing.JPanel Conta;
+    private javax.swing.JPanel Inserir;
+    private javax.swing.JButton InserirC;
+    private javax.swing.JRadioButton InserirConta;
+    private javax.swing.JButton InserirP;
+    private javax.swing.JButton InserirPC;
+    private javax.swing.JRadioButton InserirPessoa;
+    private javax.swing.JRadioButton InserirPessoaConta;
+    private javax.swing.JPanel Pessoa;
+    private javax.swing.JPanel PessoaConta;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JTextField nomeC;
+    private javax.swing.JTextField nomeP;
+    private javax.swing.JTextField nomePC;
+    private javax.swing.ButtonGroup opcaoInserir;
+    private javax.swing.JTextField saldoC;
+    private javax.swing.JTextField saldoPC;
     // End of variables declaration//GEN-END:variables
 }
