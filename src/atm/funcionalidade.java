@@ -13,8 +13,8 @@ import java.util.Scanner;
  * @author JBP1996 Atec
  */
 public class funcionalidade {
-    ArrayList <Pessoa> ap = ATM.ap;
-    ArrayList <ContaBancaria> acb= ATM.acb;
+    ArrayList <Pessoa> ap = Principal.ap;
+    ArrayList <ContaBancaria> acb= Principal.acb;
     
     public void inserir(Pessoa p,ArrayList <Pessoa> ap,ContaBancaria cb,ArrayList <ContaBancaria> acb){
         int opcao=0;

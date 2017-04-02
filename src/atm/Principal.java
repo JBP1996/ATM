@@ -5,12 +5,21 @@
  */
 package atm;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author JBP1996 Atec
  */
 public class Principal extends javax.swing.JFrame {
-    funcionalidade func;
+    funcionalidade func = new funcionalidade();
+    static Pessoa p;
+    static ContaBancaria cb;
+    static ArrayList <Pessoa> ap = new ArrayList<Pessoa>();
+    static ArrayList <ContaBancaria> acb = new ArrayList<ContaBancaria>();
     /**
      * Creates new form Principal
      */
@@ -28,6 +37,8 @@ public class Principal extends javax.swing.JFrame {
     private void initComponents() {
 
         opcaoInserir = new javax.swing.ButtonGroup();
+        opcaoListar = new javax.swing.ButtonGroup();
+        Principal = new javax.swing.JTabbedPane();
         Inserir = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         InserirPessoa = new javax.swing.JRadioButton();
@@ -52,6 +63,37 @@ public class Principal extends javax.swing.JFrame {
         InserirPC = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         saldoPC = new javax.swing.JTextField();
+        Listar = new javax.swing.JPanel();
+        scrollPane = new javax.swing.JScrollPane();
+        tabela = new javax.swing.JTable();
+        ListarPessoas = new javax.swing.JRadioButton();
+        ListarContas = new javax.swing.JRadioButton();
+        Login = new javax.swing.JPanel();
+        LoginSucesso = new javax.swing.JPanel();
+        bemvindo = new javax.swing.JLabel();
+        logout = new javax.swing.JButton();
+        Levantar = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        quantialevantar = new javax.swing.JTextField();
+        levantarbtn = new javax.swing.JButton();
+        Depositar = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        quantiadepositar = new javax.swing.JTextField();
+        depositarbtn = new javax.swing.JButton();
+        Transferir = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        conta = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        quantia = new javax.swing.JTextField();
+        transferirbtn = new javax.swing.JButton();
+        LoginPanel = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        nconta = new javax.swing.JTextField();
+        LoginBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(449, 277));
@@ -68,26 +110,26 @@ public class Principal extends javax.swing.JFrame {
 
         opcaoInserir.add(InserirPessoa);
         InserirPessoa.setText("Inserir Pessoa");
-        InserirPessoa.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                InserirPessoaMouseClicked(evt);
+        InserirPessoa.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                InserirPessoaItemStateChanged(evt);
             }
         });
 
         opcaoInserir.add(InserirConta);
         InserirConta.setText("Inserir Conta");
         InserirConta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        InserirConta.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                InserirContaMouseClicked(evt);
+        InserirConta.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                InserirContaItemStateChanged(evt);
             }
         });
 
         opcaoInserir.add(InserirPessoaConta);
         InserirPessoaConta.setText("Inserir Pessoa e Conta");
-        InserirPessoaConta.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                InserirPessoaContaMouseClicked(evt);
+        InserirPessoaConta.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                InserirPessoaContaItemStateChanged(evt);
             }
         });
 
@@ -98,6 +140,11 @@ public class Principal extends javax.swing.JFrame {
         jLabel3.setText("Nome:");
 
         InserirP.setText("Inserir");
+        InserirP.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                InserirPMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout PessoaLayout = new javax.swing.GroupLayout(Pessoa);
         Pessoa.setLayout(PessoaLayout);
@@ -127,7 +174,7 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(nomeP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(InserirP))
-                .addContainerGap(94, Short.MAX_VALUE))
+                .addContainerGap(91, Short.MAX_VALUE))
         );
 
         Conta.setMinimumSize(new java.awt.Dimension(100, 100));
@@ -137,6 +184,11 @@ public class Principal extends javax.swing.JFrame {
         jLabel5.setText("Nome:");
 
         InserirC.setText("Inserir");
+        InserirC.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                InserirCMouseClicked(evt);
+            }
+        });
 
         jLabel6.setText("Saldo:");
 
@@ -161,7 +213,7 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(saldoC, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(InserirC)))
-                .addContainerGap(203, Short.MAX_VALUE))
+                .addContainerGap(246, Short.MAX_VALUE))
         );
         ContaLayout.setVerticalGroup(
             ContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,7 +229,7 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(saldoC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(InserirC))
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         PessoaConta.setMinimumSize(new java.awt.Dimension(100, 100));
@@ -187,6 +239,11 @@ public class Principal extends javax.swing.JFrame {
         jLabel8.setText("Nome:");
 
         InserirPC.setText("Inserir");
+        InserirPC.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                InserirPCMouseClicked(evt);
+            }
+        });
 
         jLabel9.setText("Saldo:");
 
@@ -211,7 +268,7 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(saldoPC, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(InserirPC)))
-                .addContainerGap(203, Short.MAX_VALUE))
+                .addContainerGap(200, Short.MAX_VALUE))
         );
         PessoaContaLayout.setVerticalGroup(
             PessoaContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -227,7 +284,7 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jLabel9)
                     .addComponent(saldoPC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(InserirPC))
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout InserirLayout = new javax.swing.GroupLayout(Inserir);
@@ -249,7 +306,7 @@ public class Principal extends javax.swing.JFrame {
                                 .addComponent(jLabel1)))
                         .addGap(45, 45, 45)
                         .addComponent(InserirPessoaConta))
-                    .addComponent(Pessoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(Pessoa, javax.swing.GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(InserirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(InserirLayout.createSequentialGroup()
@@ -273,7 +330,7 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(InserirConta)
                     .addComponent(InserirPessoaConta))
                 .addGap(18, 18, 18)
-                .addComponent(Pessoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Pessoa, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(InserirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(InserirLayout.createSequentialGroup()
@@ -287,37 +344,425 @@ public class Principal extends javax.swing.JFrame {
                     .addContainerGap()))
         );
 
+        Principal.addTab("Inserir", Inserir);
+
+        scrollPane.setViewportView(tabela);
+
+        tabela.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+            },
+            new String [] {
+                "ID", "Nome"
+            }
+        ));
+        scrollPane.setViewportView(tabela);
+
+        opcaoListar.add(ListarPessoas);
+        ListarPessoas.setText("Listar Pessoas");
+        ListarPessoas.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                ListarPessoasItemStateChanged(evt);
+            }
+        });
+
+        opcaoListar.add(ListarContas);
+        ListarContas.setText("Listar Contas");
+        ListarContas.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                ListarContasItemStateChanged(evt);
+            }
+        });
+
+        javax.swing.GroupLayout ListarLayout = new javax.swing.GroupLayout(Listar);
+        Listar.setLayout(ListarLayout);
+        ListarLayout.setHorizontalGroup(
+            ListarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ListarLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(ListarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ListarLayout.createSequentialGroup()
+                        .addComponent(ListarPessoas)
+                        .addGap(18, 18, 18)
+                        .addComponent(ListarContas))
+                    .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+        ListarLayout.setVerticalGroup(
+            ListarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ListarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(ListarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ListarPessoas)
+                    .addComponent(ListarContas))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        Principal.addTab("Listar", Listar);
+
+        bemvindo.setText("Bem- Vindo");
+
+        logout.setText("Logout");
+
+        jLabel13.setText("Levantar");
+
+        jLabel14.setText("Quantia:");
+
+        levantarbtn.setText("Confirmar");
+
+        javax.swing.GroupLayout LevantarLayout = new javax.swing.GroupLayout(Levantar);
+        Levantar.setLayout(LevantarLayout);
+        LevantarLayout.setHorizontalGroup(
+            LevantarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LevantarLayout.createSequentialGroup()
+                .addGroup(LevantarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(LevantarLayout.createSequentialGroup()
+                        .addGap(186, 186, 186)
+                        .addComponent(jLabel13))
+                    .addGroup(LevantarLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(quantialevantar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(levantarbtn)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        LevantarLayout.setVerticalGroup(
+            LevantarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LevantarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(LevantarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(quantialevantar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(levantarbtn))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jLabel10.setText("Depositar");
+
+        jLabel15.setText("Quantia:");
+
+        depositarbtn.setText("Confirmar");
+
+        javax.swing.GroupLayout DepositarLayout = new javax.swing.GroupLayout(Depositar);
+        Depositar.setLayout(DepositarLayout);
+        DepositarLayout.setHorizontalGroup(
+            DepositarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DepositarLayout.createSequentialGroup()
+                .addGroup(DepositarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(DepositarLayout.createSequentialGroup()
+                        .addGap(182, 182, 182)
+                        .addComponent(jLabel10))
+                    .addGroup(DepositarLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel15)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(quantiadepositar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(depositarbtn)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        DepositarLayout.setVerticalGroup(
+            DepositarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DepositarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(DepositarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(quantiadepositar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(depositarbtn))
+                .addContainerGap(41, Short.MAX_VALUE))
+        );
+
+        jLabel16.setText("Transferir");
+
+        jLabel17.setText("Numero de conta:");
+
+        jLabel18.setText("Quantia:");
+
+        transferirbtn.setText("Confirmar");
+
+        javax.swing.GroupLayout TransferirLayout = new javax.swing.GroupLayout(Transferir);
+        Transferir.setLayout(TransferirLayout);
+        TransferirLayout.setHorizontalGroup(
+            TransferirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(TransferirLayout.createSequentialGroup()
+                .addGroup(TransferirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(TransferirLayout.createSequentialGroup()
+                        .addGap(166, 166, 166)
+                        .addComponent(jLabel16))
+                    .addGroup(TransferirLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(TransferirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, TransferirLayout.createSequentialGroup()
+                                .addComponent(jLabel18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(quantia, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, TransferirLayout.createSequentialGroup()
+                                .addComponent(jLabel17)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(conta, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(transferirbtn)))
+                .addContainerGap(159, Short.MAX_VALUE))
+        );
+        TransferirLayout.setVerticalGroup(
+            TransferirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(TransferirLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel16)
+                .addGroup(TransferirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(TransferirLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(TransferirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel17)
+                            .addComponent(conta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(TransferirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel18)
+                            .addComponent(quantia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(TransferirLayout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(transferirbtn)))
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout LoginSucessoLayout = new javax.swing.GroupLayout(LoginSucesso);
+        LoginSucesso.setLayout(LoginSucessoLayout);
+        LoginSucessoLayout.setHorizontalGroup(
+            LoginSucessoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LoginSucessoLayout.createSequentialGroup()
+                .addGroup(LoginSucessoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Levantar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Depositar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(LoginSucessoLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(LoginSucessoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Transferir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(LoginSucessoLayout.createSequentialGroup()
+                                .addComponent(bemvindo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(logout)))))
+                .addContainerGap())
+        );
+        LoginSucessoLayout.setVerticalGroup(
+            LoginSucessoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LoginSucessoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(LoginSucessoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bemvindo)
+                    .addComponent(logout))
+                .addGap(18, 18, 18)
+                .addComponent(Levantar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Depositar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Transferir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jLabel11.setText("Login");
+
+        jLabel12.setText("Numero de conta:");
+
+        LoginBtn.setText("Entrar");
+
+        javax.swing.GroupLayout LoginPanelLayout = new javax.swing.GroupLayout(LoginPanel);
+        LoginPanel.setLayout(LoginPanelLayout);
+        LoginPanelLayout.setHorizontalGroup(
+            LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LoginPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel11)
+                    .addGroup(LoginPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(nconta, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(LoginBtn)))
+                .addContainerGap(215, Short.MAX_VALUE))
+        );
+        LoginPanelLayout.setVerticalGroup(
+            LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LoginPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(nconta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LoginBtn))
+                .addContainerGap(171, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout LoginLayout = new javax.swing.GroupLayout(Login);
+        Login.setLayout(LoginLayout);
+        LoginLayout.setHorizontalGroup(
+            LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LoginLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(LoginSucesso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(20, 20, 20))
+            .addGroup(LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(LoginLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(LoginPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+        LoginLayout.setVerticalGroup(
+            LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LoginLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(LoginSucesso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(22, 22, 22))
+            .addGroup(LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(LoginLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(LoginPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+
+        Principal.addTab("Login", Login);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Inserir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Principal)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Inserir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Principal)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void InserirPessoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InserirPessoaMouseClicked
+    private void InserirPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InserirPMouseClicked
         // TODO add your handling code here:
-        Conta.setVisible(false);
-        Conta.setEnabled(false);
-        PessoaConta.setVisible(false);
-        PessoaConta.setEnabled(false);
-        Pessoa.setVisible(true);
-        Pessoa.setEnabled(true);
-    }//GEN-LAST:event_InserirPessoaMouseClicked
+        String nome= nomeP.getText();
+        if(ap.size()!=0){
+            for(int i=0;i<ap.size();i++){
+                if(nome.equals(ap.get(i).getNome())){
+                    javax.swing.JOptionPane.showMessageDialog(null,"Este nome ja possui conta\n");
+                }else if(i==ap.size()-1 && !nome.equals(ap.get(i).getNome())){
+                    javax.swing.JOptionPane.showMessageDialog(null,"Inserido com sucesso\n");
+                    func.inserirPessoa(p, ap, nome);
+                    break;
+                }   
+            }
+        }else{
+            javax.swing.JOptionPane.showMessageDialog(null,"Inserido com sucesso\n");
+            func.inserirPessoa(p, ap, nome);
+        }
+        nomeP.setText("");
+    }//GEN-LAST:event_InserirPMouseClicked
 
-    private void InserirContaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InserirContaMouseClicked
+    private void InserirCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InserirCMouseClicked
+        // TODO add your handling code here:
+        
+        int opcao=0;
+        Double preco = 0.0;
+        preco= Double.parseDouble(saldoC.getText());             
+        for(int i=0;i<ap.size();i++){
+            if(nomeC.getText().equals(ap.get(i).getNome())){
+                javax.swing.JOptionPane.showMessageDialog(null,"Saldo adicionado com sucesso\n");
+                cb = new ContaBancaria(acb.size(),ap.get(i),preco);
+                acb.add(cb);
+                break;
+            }else{
+               javax.swing.JOptionPane.showMessageDialog(null,"Este nome nao possui conta\n Insira um nome que ja possua conta\n"); 
+            }   
+        }
+        nomeC.setText("");
+        saldoC.setText("");
+    }//GEN-LAST:event_InserirCMouseClicked
+
+    private void InserirPCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InserirPCMouseClicked
+        // TODO add your handling code here:
+        int opcao=0;
+        String nome= nomePC.getText();
+        if(ap.size()!=0){
+            for(int i=0;i<ap.size();i++){
+                if(nome.equals(ap.get(i).getNome())){
+                   opcao= javax.swing.JOptionPane.showConfirmDialog(null,"Este nome ja possui conta\n "
+                           + "Deseja acrescentar mais uma\n");
+                    //opcao = new Scanner(System.in).nextInt();
+                    if(opcao==JOptionPane.YES_OPTION){
+                        javax.swing.JOptionPane.showMessageDialog(null,"Conta Inserida com sucesso\n");
+                        cb = new ContaBancaria(acb.size(),ap.get(i),Double.parseDouble(saldoPC.getText()));
+                        acb.add(cb);
+                    }else{
+                        break;
+                    }
+                }else if((i==ap.size()-1) && !(nome.equals(ap.get(i).getNome()))){
+                    javax.swing.JOptionPane.showMessageDialog(null,"Inserido Utilizador e Conta "
+                            + "com sucesso\n");
+                    func.inserirPessoa(p, ap, nome);
+                    cb = new ContaBancaria(acb.size(),ap.get(ap.size()-1),Double.parseDouble(saldoPC.getText()));
+                    acb.add(cb);
+                    break;
+                }   
+            }
+        }else{
+            javax.swing.JOptionPane.showMessageDialog(null,"Inserido Utilizador e Conta com sucesso\n");
+            func.inserirPessoa(p, ap, nome);
+            func.inserirConta(ap.get(ap.size()-1).getNome(), cb, acb,ap);
+            cb = new ContaBancaria(acb.size(),ap.get(ap.size()-1),Double.parseDouble(saldoPC.getText()));
+            acb.add(cb);
+        }
+        nomePC.setText("");
+        saldoPC.setText("");
+    }//GEN-LAST:event_InserirPCMouseClicked
+
+    private void ListarPessoasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ListarPessoasItemStateChanged
+        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) tabela.getModel();
+        for(int i=0;i<model.getRowCount();i++){
+            model.removeRow(i);
+        }
+        model.setColumnCount(0);
+        model.setRowCount(0);
+        model.addColumn("ID");
+        model.addColumn("Nome");
+        for(int i=0;i<ap.size();i++){
+            Object[] linha ={i,ap.get(i).getNome()};
+            model.addRow(linha);
+        }
+        
+    }//GEN-LAST:event_ListarPessoasItemStateChanged
+
+    private void ListarContasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ListarContasItemStateChanged
+        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) tabela.getModel();
+        for(int i=0;i<model.getRowCount();i++){
+            model.removeRow(i);
+        }
+        model.setColumnCount(0);
+        model.setRowCount(0);
+        model.addColumn("Numero Conta");
+        model.addColumn("Nome Titular");
+        model.addColumn("Saldo");
+        for(int i=0;i<acb.size();i++){
+            Object[] linha ={acb.get(i).getNumero(),acb.get(i).getTitular().getNome(),acb.get(i).getSaldo()};
+            model.addRow(linha);
+        }
+        
+    }//GEN-LAST:event_ListarContasItemStateChanged
+
+    private void InserirPessoaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_InserirPessoaItemStateChanged
         // TODO add your handling code here:
         Pessoa.setVisible(false);
         Pessoa.setEnabled(false);
@@ -325,18 +770,27 @@ public class Principal extends javax.swing.JFrame {
         PessoaConta.setEnabled(false);
         Conta.setVisible(true);
         Conta.setEnabled(true);
-    }//GEN-LAST:event_InserirContaMouseClicked
+    }//GEN-LAST:event_InserirPessoaItemStateChanged
 
-    private void InserirPessoaContaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InserirPessoaContaMouseClicked
+    private void InserirPessoaContaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_InserirPessoaContaItemStateChanged
+        // TODO add your handling code here:
+        Pessoa.setVisible(true);
+        Pessoa.setEnabled(true);
+        Conta.setVisible(false);
+        Conta.setEnabled(false);
+        PessoaConta.setVisible(false);
+        PessoaConta.setEnabled(false);
+    }//GEN-LAST:event_InserirPessoaContaItemStateChanged
+
+    private void InserirContaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_InserirContaItemStateChanged
         // TODO add your handling code here:
         Pessoa.setVisible(false);
         Pessoa.setEnabled(false);
-        Conta.setVisible(false);
-        Conta.setEnabled(false);
-        PessoaConta.setVisible(true);
-        PessoaConta.setEnabled(true);
-        
-    }//GEN-LAST:event_InserirPessoaContaMouseClicked
+        PessoaConta.setVisible(false);
+        PessoaConta.setEnabled(false);
+        Conta.setVisible(true);
+        Conta.setEnabled(true);
+    }//GEN-LAST:event_InserirContaItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -375,6 +829,7 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Conta;
+    private javax.swing.JPanel Depositar;
     private javax.swing.JPanel Inserir;
     private javax.swing.JButton InserirC;
     private javax.swing.JRadioButton InserirConta;
@@ -382,9 +837,31 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton InserirPC;
     private javax.swing.JRadioButton InserirPessoa;
     private javax.swing.JRadioButton InserirPessoaConta;
+    private javax.swing.JPanel Levantar;
+    private javax.swing.JPanel Listar;
+    private javax.swing.JRadioButton ListarContas;
+    private javax.swing.JRadioButton ListarPessoas;
+    private javax.swing.JPanel Login;
+    private javax.swing.JButton LoginBtn;
+    private javax.swing.JPanel LoginPanel;
+    private javax.swing.JPanel LoginSucesso;
     private javax.swing.JPanel Pessoa;
     private javax.swing.JPanel PessoaConta;
+    private javax.swing.JTabbedPane Principal;
+    private javax.swing.JPanel Transferir;
+    private javax.swing.JLabel bemvindo;
+    private javax.swing.JTextField conta;
+    private javax.swing.JButton depositarbtn;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -393,11 +870,21 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JButton levantarbtn;
+    private javax.swing.JButton logout;
+    private javax.swing.JTextField nconta;
     private javax.swing.JTextField nomeC;
     private javax.swing.JTextField nomeP;
     private javax.swing.JTextField nomePC;
     private javax.swing.ButtonGroup opcaoInserir;
+    private javax.swing.ButtonGroup opcaoListar;
+    private javax.swing.JTextField quantia;
+    private javax.swing.JTextField quantiadepositar;
+    private javax.swing.JTextField quantialevantar;
     private javax.swing.JTextField saldoC;
     private javax.swing.JTextField saldoPC;
+    private javax.swing.JScrollPane scrollPane;
+    private javax.swing.JTable tabela;
+    private javax.swing.JButton transferirbtn;
     // End of variables declaration//GEN-END:variables
 }
