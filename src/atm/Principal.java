@@ -20,6 +20,7 @@ public class Principal extends javax.swing.JFrame {
     static ContaBancaria cb;
     static ArrayList <Pessoa> ap = new ArrayList<Pessoa>();
     static ArrayList <ContaBancaria> acb = new ArrayList<ContaBancaria>();
+    int contalogin=-1;
     /**
      * Creates new form Principal
      */
@@ -406,9 +407,9 @@ public class Principal extends javax.swing.JFrame {
         jLabel12.setText("Numero de conta:");
 
         LoginBtn.setText("Entrar");
-        LoginBtn.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                LoginBtnItemStateChanged(evt);
+        LoginBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LoginBtnMouseClicked(evt);
             }
         });
 
@@ -438,15 +439,17 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jLabel12)
                     .addComponent(nconta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LoginBtn))
-                .addContainerGap(171, Short.MAX_VALUE))
+                .addContainerGap(281, Short.MAX_VALUE))
         );
+
+        LoginSucesso.setPreferredSize(new java.awt.Dimension(432, 362));
 
         bemvindo.setText("Bem- Vindo");
 
         logout.setText("Logout");
-        logout.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                logoutItemStateChanged(evt);
+        logout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logoutMouseClicked(evt);
             }
         });
 
@@ -455,6 +458,11 @@ public class Principal extends javax.swing.JFrame {
         jLabel14.setText("Quantia:");
 
         levantarbtn.setText("Confirmar");
+        levantarbtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                levantarbtnMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout LevantarLayout = new javax.swing.GroupLayout(Levantar);
         Levantar.setLayout(LevantarLayout);
@@ -492,6 +500,11 @@ public class Principal extends javax.swing.JFrame {
         jLabel15.setText("Quantia:");
 
         depositarbtn.setText("Confirmar");
+        depositarbtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                depositarbtnMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout DepositarLayout = new javax.swing.GroupLayout(Depositar);
         Depositar.setLayout(DepositarLayout);
@@ -521,7 +534,7 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jLabel15)
                     .addComponent(quantiadepositar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(depositarbtn))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel16.setText("Transferir");
@@ -531,6 +544,11 @@ public class Principal extends javax.swing.JFrame {
         jLabel18.setText("Quantia:");
 
         transferirbtn.setText("Confirmar");
+        transferirbtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                transferirbtnMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout TransferirLayout = new javax.swing.GroupLayout(Transferir);
         Transferir.setLayout(TransferirLayout);
@@ -574,7 +592,7 @@ public class Principal extends javax.swing.JFrame {
                     .addGroup(TransferirLayout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(transferirbtn)))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout LoginSucessoLayout = new javax.swing.GroupLayout(LoginSucesso);
@@ -804,29 +822,102 @@ public class Principal extends javax.swing.JFrame {
         Conta.setEnabled(true);
     }//GEN-LAST:event_InserirContaItemStateChanged
 
-    private void LoginBtnItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_LoginBtnItemStateChanged
+    private void LoginBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LoginBtnMouseClicked
         // TODO add your handling code here:
-        for(int i=0;i<ap.size();i++){
+        for(int i=0;i<acb.size();i++){
             if(Integer.parseInt(nconta.getText()) == acb.get(i).getNumero()){
                 LoginPanel.setEnabled(false);
                 LoginPanel.setVisible(false);
                 LoginSucesso.setEnabled(true);
                 LoginSucesso.setVisible(true);
                 bemvindo.setText("Bem Vindo "+acb.get(i).getTitular().getNome());
-            }else if(i==(ap.size()-1) && (Integer.parseInt(nconta.getText()) != acb.get(i).getNumero())){
+                contalogin=i;
+                break;
+            }else if(i==(acb.size()-1) && (Integer.parseInt(nconta.getText()) != acb.get(i).getNumero())){
                 javax.swing.JOptionPane.showMessageDialog(null,"Utilizador inexistente\n");
             }
         }
-    }//GEN-LAST:event_LoginBtnItemStateChanged
+    }//GEN-LAST:event_LoginBtnMouseClicked
 
-    private void logoutItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_logoutItemStateChanged
+    private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
         // TODO add your handling code here:
         LoginSucesso.setEnabled(false);
         LoginSucesso.setVisible(false);
         LoginPanel.setEnabled(true);
         LoginPanel.setVisible(true);
         javax.swing.JOptionPane.showMessageDialog(null,"Logout feito com sucesso\n");
-    }//GEN-LAST:event_logoutItemStateChanged
+        contalogin=-1;
+    }//GEN-LAST:event_logoutMouseClicked
+
+    private void levantarbtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_levantarbtnMouseClicked
+        // TODO add your handling code here:
+        if(acb.get(contalogin).getSaldo()>0){
+            if(acb.get(contalogin).getSaldo()>=Double.parseDouble(quantialevantar.getText())){
+                acb.get(contalogin).setSaldo(
+                    acb.get(contalogin).getSaldo()-Double.parseDouble(quantialevantar.getText()));
+                javax.swing.JOptionPane.showMessageDialog(null,"Levantamento de "
+                    +Double.parseDouble(quantialevantar.getText())+" € feito com sucesso\n");
+            }else{
+                javax.swing.JOptionPane.showMessageDialog(null,"Saldo de conta inferior à quantia que deseja levantar\n");
+            }
+        }
+        quantialevantar.setText("");
+        quantiadepositar.setText("");
+        conta.setText("");
+        quantia.setText("");
+    }//GEN-LAST:event_levantarbtnMouseClicked
+
+    private void depositarbtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_depositarbtnMouseClicked
+        // TODO add your handling code here:
+        acb.get(contalogin).setSaldo(
+            acb.get(contalogin).getSaldo()+Double.parseDouble(quantiadepositar.getText()));
+        javax.swing.JOptionPane.showMessageDialog(null,"Deposito de "
+            +Double.parseDouble(quantiadepositar.getText())+" € feito com sucesso\n");
+        
+        quantialevantar.setText("");
+        quantiadepositar.setText("");
+        conta.setText("");
+        quantia.setText("");
+    }//GEN-LAST:event_depositarbtnMouseClicked
+
+    private void transferirbtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_transferirbtnMouseClicked
+        // TODO add your handling code here:
+        for(int i=0;i<acb.size();i++){
+            if(Integer.parseInt(conta.getText()) != contalogin){
+                if(Integer.parseInt(conta.getText()) == acb.get(i).getNumero()){
+                    if(acb.get(contalogin).getSaldo()>0){
+                        if(acb.get(contalogin).getSaldo()>=Double.parseDouble(quantia.getText())){
+                            acb.get(contalogin).setSaldo(
+                                acb.get(contalogin).getSaldo()-Double.parseDouble(quantia.getText()));
+
+                            acb.get(i).setSaldo(
+                                acb.get(i).getSaldo()+Double.parseDouble(quantia.getText()));
+
+                            javax.swing.JOptionPane.showMessageDialog(null,"Transferencia feita com sucesso\n");
+                            break;
+                        }else{
+                            javax.swing.JOptionPane.showMessageDialog(null,"Saldo de conta inferior à quantia que deseja transferir\n");
+                            break;
+                        }
+                    }else{
+                      javax.swing.JOptionPane.showMessageDialog(null,"Não possui saldo suficiente na "
+                              + "conta para fazer uma transferencia\n");
+                      break;
+                    } 
+                }else if(i==(acb.size()-1) && (Integer.parseInt(conta.getText()) != acb.get(i).getNumero())){
+                    javax.swing.JOptionPane.showMessageDialog(null,"Utilizador inexistente\n");
+                    break;
+                }
+            }else{
+                javax.swing.JOptionPane.showMessageDialog(null,"Nao pode transferir dinheiro para a sua propria conta\n");
+                break;
+            }
+        }
+        quantialevantar.setText("");
+        quantiadepositar.setText("");
+        conta.setText("");
+        quantia.setText("");
+    }//GEN-LAST:event_transferirbtnMouseClicked
 
     /**
      * @param args the command line arguments
