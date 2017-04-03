@@ -749,7 +749,6 @@ public class Principal extends javax.swing.JFrame {
         }else{
             javax.swing.JOptionPane.showMessageDialog(null,"Inserido Utilizador e Conta com sucesso\n");
             func.inserirPessoa(p, ap, nome);
-            //func.inserirConta(ap.get(ap.size()-1).getNome(), cb, acb,ap);
             cb = new ContaBancaria(acb.size(),ap.get(ap.size()-1),Double.parseDouble(saldoPC.getText()));
             acb.add(cb);
         }
