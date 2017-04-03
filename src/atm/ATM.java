@@ -24,6 +24,7 @@ public class ATM {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+
         funcionalidade func = new funcionalidade();
         int opc=0;
         while(opc!=4){

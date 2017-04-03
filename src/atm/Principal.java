@@ -69,6 +69,11 @@ public class Principal extends javax.swing.JFrame {
         ListarPessoas = new javax.swing.JRadioButton();
         ListarContas = new javax.swing.JRadioButton();
         Login = new javax.swing.JPanel();
+        LoginPanel = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        nconta = new javax.swing.JTextField();
+        LoginBtn = new javax.swing.JButton();
         LoginSucesso = new javax.swing.JPanel();
         bemvindo = new javax.swing.JLabel();
         logout = new javax.swing.JButton();
@@ -89,11 +94,6 @@ public class Principal extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         quantia = new javax.swing.JTextField();
         transferirbtn = new javax.swing.JButton();
-        LoginPanel = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        nconta = new javax.swing.JTextField();
-        LoginBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(449, 277));
@@ -330,7 +330,7 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(InserirConta)
                     .addComponent(InserirPessoaConta))
                 .addGap(18, 18, 18)
-                .addComponent(Pessoa, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+                .addComponent(Pessoa, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(InserirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(InserirLayout.createSequentialGroup()
@@ -401,9 +401,54 @@ public class Principal extends javax.swing.JFrame {
 
         Principal.addTab("Listar", Listar);
 
+        jLabel11.setText("Login");
+
+        jLabel12.setText("Numero de conta:");
+
+        LoginBtn.setText("Entrar");
+        LoginBtn.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                LoginBtnItemStateChanged(evt);
+            }
+        });
+
+        javax.swing.GroupLayout LoginPanelLayout = new javax.swing.GroupLayout(LoginPanel);
+        LoginPanel.setLayout(LoginPanelLayout);
+        LoginPanelLayout.setHorizontalGroup(
+            LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LoginPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel11)
+                    .addGroup(LoginPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(nconta, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(LoginBtn)))
+                .addContainerGap(215, Short.MAX_VALUE))
+        );
+        LoginPanelLayout.setVerticalGroup(
+            LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LoginPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(nconta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LoginBtn))
+                .addContainerGap(171, Short.MAX_VALUE))
+        );
+
         bemvindo.setText("Bem- Vindo");
 
         logout.setText("Logout");
+        logout.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                logoutItemStateChanged(evt);
+            }
+        });
 
         jLabel13.setText("Levantar");
 
@@ -566,41 +611,6 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel11.setText("Login");
-
-        jLabel12.setText("Numero de conta:");
-
-        LoginBtn.setText("Entrar");
-
-        javax.swing.GroupLayout LoginPanelLayout = new javax.swing.GroupLayout(LoginPanel);
-        LoginPanel.setLayout(LoginPanelLayout);
-        LoginPanelLayout.setHorizontalGroup(
-            LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(LoginPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel11)
-                    .addGroup(LoginPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel12)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(nconta, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(LoginBtn)))
-                .addContainerGap(215, Short.MAX_VALUE))
-        );
-        LoginPanelLayout.setVerticalGroup(
-            LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(LoginPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel11)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(nconta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LoginBtn))
-                .addContainerGap(171, Short.MAX_VALUE))
-        );
-
         javax.swing.GroupLayout LoginLayout = new javax.swing.GroupLayout(Login);
         Login.setLayout(LoginLayout);
         LoginLayout.setHorizontalGroup(
@@ -629,6 +639,8 @@ public class Principal extends javax.swing.JFrame {
         );
 
         Principal.addTab("Login", Login);
+        LoginSucesso.setEnabled(false);
+        LoginSucesso.setVisible(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -719,7 +731,7 @@ public class Principal extends javax.swing.JFrame {
         }else{
             javax.swing.JOptionPane.showMessageDialog(null,"Inserido Utilizador e Conta com sucesso\n");
             func.inserirPessoa(p, ap, nome);
-            func.inserirConta(ap.get(ap.size()-1).getNome(), cb, acb,ap);
+            //func.inserirConta(ap.get(ap.size()-1).getNome(), cb, acb,ap);
             cb = new ContaBancaria(acb.size(),ap.get(ap.size()-1),Double.parseDouble(saldoPC.getText()));
             acb.add(cb);
         }
@@ -764,22 +776,22 @@ public class Principal extends javax.swing.JFrame {
 
     private void InserirPessoaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_InserirPessoaItemStateChanged
         // TODO add your handling code here:
-        Pessoa.setVisible(false);
-        Pessoa.setEnabled(false);
+        Pessoa.setVisible(true);
+        Pessoa.setEnabled(true);
         PessoaConta.setVisible(false);
         PessoaConta.setEnabled(false);
-        Conta.setVisible(true);
-        Conta.setEnabled(true);
+        Conta.setVisible(false);
+        Conta.setEnabled(false);
     }//GEN-LAST:event_InserirPessoaItemStateChanged
 
     private void InserirPessoaContaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_InserirPessoaContaItemStateChanged
         // TODO add your handling code here:
-        Pessoa.setVisible(true);
-        Pessoa.setEnabled(true);
+        Pessoa.setVisible(false);
+        Pessoa.setEnabled(false);
         Conta.setVisible(false);
         Conta.setEnabled(false);
-        PessoaConta.setVisible(false);
-        PessoaConta.setEnabled(false);
+        PessoaConta.setVisible(true);
+        PessoaConta.setEnabled(true);
     }//GEN-LAST:event_InserirPessoaContaItemStateChanged
 
     private void InserirContaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_InserirContaItemStateChanged
@@ -791,6 +803,30 @@ public class Principal extends javax.swing.JFrame {
         Conta.setVisible(true);
         Conta.setEnabled(true);
     }//GEN-LAST:event_InserirContaItemStateChanged
+
+    private void LoginBtnItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_LoginBtnItemStateChanged
+        // TODO add your handling code here:
+        for(int i=0;i<ap.size();i++){
+            if(Integer.parseInt(nconta.getText()) == acb.get(i).getNumero()){
+                LoginPanel.setEnabled(false);
+                LoginPanel.setVisible(false);
+                LoginSucesso.setEnabled(true);
+                LoginSucesso.setVisible(true);
+                bemvindo.setText("Bem Vindo "+acb.get(i).getTitular().getNome());
+            }else if(i==(ap.size()-1) && (Integer.parseInt(nconta.getText()) != acb.get(i).getNumero())){
+                javax.swing.JOptionPane.showMessageDialog(null,"Utilizador inexistente\n");
+            }
+        }
+    }//GEN-LAST:event_LoginBtnItemStateChanged
+
+    private void logoutItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_logoutItemStateChanged
+        // TODO add your handling code here:
+        LoginSucesso.setEnabled(false);
+        LoginSucesso.setVisible(false);
+        LoginPanel.setEnabled(true);
+        LoginPanel.setVisible(true);
+        javax.swing.JOptionPane.showMessageDialog(null,"Logout feito com sucesso\n");
+    }//GEN-LAST:event_logoutItemStateChanged
 
     /**
      * @param args the command line arguments
