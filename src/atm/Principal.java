@@ -709,8 +709,7 @@ public class Principal extends javax.swing.JFrame {
         for(int i=0;i<ap.size();i++){
             if(nomeC.getText().equals(ap.get(i).getNome())){
                 javax.swing.JOptionPane.showMessageDialog(null,"Saldo adicionado com sucesso\n");
-                cb = new ContaBancaria(acb.size(),ap.get(i),preco);
-                acb.add(cb);
+                func.inserirConta(cb,i,preco, acb);
                 break;
             }else{
                javax.swing.JOptionPane.showMessageDialog(null,"Este nome nao possui conta\n Insira um nome que ja possua conta\n"); 
@@ -729,11 +728,9 @@ public class Principal extends javax.swing.JFrame {
                 if(nome.equals(ap.get(i).getNome())){
                    opcao= javax.swing.JOptionPane.showConfirmDialog(null,"Este nome ja possui conta\n "
                            + "Deseja acrescentar mais uma\n");
-                    //opcao = new Scanner(System.in).nextInt();
                     if(opcao==JOptionPane.YES_OPTION){
                         javax.swing.JOptionPane.showMessageDialog(null,"Conta Inserida com sucesso\n");
-                        cb = new ContaBancaria(acb.size(),ap.get(i),Double.parseDouble(saldoPC.getText()));
-                        acb.add(cb);
+                        func.inserirConta(cb,i,Double.parseDouble(saldoPC.getText()), acb);
                     }else{
                         break;
                     }
@@ -741,16 +738,14 @@ public class Principal extends javax.swing.JFrame {
                     javax.swing.JOptionPane.showMessageDialog(null,"Inserido Utilizador e Conta "
                             + "com sucesso\n");
                     func.inserirPessoa(p, ap, nome);
-                    cb = new ContaBancaria(acb.size(),ap.get(ap.size()-1),Double.parseDouble(saldoPC.getText()));
-                    acb.add(cb);
+                    func.inserirConta(cb,ap.size()-1,Double.parseDouble(saldoPC.getText()), acb);
                     break;
                 }   
             }
         }else{
             javax.swing.JOptionPane.showMessageDialog(null,"Inserido Utilizador e Conta com sucesso\n");
             func.inserirPessoa(p, ap, nome);
-            cb = new ContaBancaria(acb.size(),ap.get(ap.size()-1),Double.parseDouble(saldoPC.getText()));
-            acb.add(cb);
+            func.inserirConta(cb,ap.size()-1,Double.parseDouble(saldoPC.getText()), acb);
         }
         nomePC.setText("");
         saldoPC.setText("");
@@ -785,7 +780,7 @@ public class Principal extends javax.swing.JFrame {
         model.addColumn("Nome Titular");
         model.addColumn("Saldo");
         for(int i=0;i<acb.size();i++){
-            Object[] linha ={acb.get(i).getNumero(),acb.get(i).getTitular().getNome(),acb.get(i).getSaldo()};
+            Object[] linha ={acb.get(i).getNumero(),acb.get(i).getTitular().getNome(),acb.get(i).getSaldo()+" €"};
             model.addRow(linha);
         }
         

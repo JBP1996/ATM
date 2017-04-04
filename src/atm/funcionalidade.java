@@ -20,4 +20,9 @@ public class funcionalidade {
         p = new Pessoa(nome);
         ap.add(p);
     }
+    
+    public void inserirConta(ContaBancaria cb,int pessoa,double preco,ArrayList <ContaBancaria> acb){
+        cb = new ContaBancaria(acb.size(),ap.get(pessoa),preco);
+        acb.add(cb);
+    }
 }
